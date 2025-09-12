@@ -14,7 +14,7 @@ cd BetOS-backend
 2. Monte a imagem docker e inicie o container:
 
 ```sh
-docker built -t betos-backend
+docker build -t betos-backend
 docker run -p 3000:80 betos-backend
 ```
 
