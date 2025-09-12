@@ -1,0 +1,4 @@
+# Notas
+
+- Método de conexão alterado para usar script customizado definido em `app/db.py`;
+- Usando timezone UTC para evitar problemas de fuso-horário, pelo fato de o app poder ser usado em várias localizações com fuso-horário diferente;
