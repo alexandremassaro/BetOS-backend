@@ -15,4 +15,9 @@ WORKDIR /BetOS
 RUN uv sync --frozen --no-cache
 
 # Run the application.
-CMD ["/BetOS/.venv/bin/fastapi", "run", "main.py", "--port", "80", "--host", "0.0.0.0"]
+# CMD ["/BetOS/.venv/bin/fastapi", "run", "src/main.py", "--port", "80", "--host", "0.0.0.0"]
+# CMD ["uv", "run", "alembic", "revision", "--autogenerate", "-m", "Initial Migration"]
+# RUN uv run alembic revision --autogenerate -m "Initial Migration" && uv run alembic upgrade head
+# RUN uv run alembic upgrade head
+CMD ["./initialize.sh"]
+# CMD ["uv", "run", "uvicorn", "app.main:app", "--reload"]

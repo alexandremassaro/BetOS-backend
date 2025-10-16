@@ -1,0 +1,57 @@
+services:
+  db:
+    image: mariadb:11.8
+    restart: always
+    # environment:
+    # - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD:-betos}
+    # - MARIADB_USER=${MARIADB_USER:-betos}
+    # - MARIADB_PASSWORD=${MARIADB_PASSWORD:-betos}
+    # - MARIADB_DATABASE=${MARIADB_DATABASE:-betos}
+    # - MARIADB_MYSQL_LOCALHOST_USER=1
+    # - MARIADB_DATABASE_FILE: /run/secrets/mariadb_database
+    # - MARIADB_USER_FILE: /run/secrets/mariadb_user
+    # - MARIADB_PASSWORD_FILE: /run/secrets/mariadb_password
+    # - MARIADB_ROOT_PASSWORD_FILE: /run/secrets/mariadb_root_password
+    env_file: ".env"
+    ports:
+      - 3306:3306
+    # volumes:
+    #   - betos-db-volume:/var/lib/mysql
+    # healthcheck:
+    #   test: ["CMD", "healthcheck.sh", "--su-mysql", "--connect"]
+    #   start_period: 10s
+    #   interval: 10s
+    #   timeout: 5s
+    #   retries: 5
+
+  # betos:
+  #   env_file: ".env"
+  #   restart: always
+  #   depends_on:
+  #     db:
+  #       condition: service_healthy
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 3000:80
+
+  adminer:
+    image: adminer:5
+    restart: always
+    ports:
+      - 8080:8080
+
+  # secrets:
+  #   mariadb_database:
+  #     file: ./secrets/mariadb_database
+  #   mariadb_user:
+  #     file: ./secrets/mariadb_user
+  #   mariadb_password:
+  #     file: ./secrets/mariadb_password
+  #   mariadb_root_password
+  #     file: ./secrets/mariadb_root_password
+  #
+  # volumes:
+  #   db_data:
+  #     name: betos-db-volume
